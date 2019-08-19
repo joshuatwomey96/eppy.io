@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/eppy.io/precache-manifest.25182cb22561a6fa2e3f27a8233a4da3.js"
+  "/eppy.io/precache-manifest.85a35a24a12006ce45277ce815dfbcc5.js"
 );
 
 workbox.clientsClaim();
