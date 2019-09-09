@@ -5,6 +5,9 @@ let seasons = [];
 let parent = "tt0944947";
 let data = [];
 
+//This js file can be ran using node scraper.js, returns a table of episode information relating to the Parent ID specified in the parent variable. Change this
+//to another Parent ID to return episode data.
+
 function getEpisodeData(parentId) {
   axios
     .get(`https://m.imdb.com/title/${parentId}/episodes/?season=1`)
