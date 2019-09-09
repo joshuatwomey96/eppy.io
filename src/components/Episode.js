@@ -80,7 +80,6 @@ export class Module extends Component {
         }
         this.setState({ test: _.flatten(newArr) });
         this.setState({ search: data });
-        console.log(this.state.search, this.state.test);
       });
   }
 
@@ -129,8 +128,7 @@ export class Module extends Component {
   dothis(event) {
     this.setState({ value: event.target.value, loading: true, imdbNotFound: true });
     this.renderSearch();
-    console.log(this.state.key);
-  }
+ }
 
   handleSubmit(event) {
     event.preventDefault();
@@ -142,27 +140,23 @@ export class Module extends Component {
         }&page=1`
       );
       const json = await response.json();
-      console.log(json.results[0].id);
       const tvID = json.results[0].id;
       if (tvID) {
         const response = await fetch(
           `https://api.themoviedb.org/3/tv/${tvID}/external_ids?api_key=${TMDB_KEY}&language=en-US`
         );
         const json = await response.json();
-        console.log(json.imdb_id);
         const imdbID = json.imdb_id;
         this.setState({
           imdbID: json.imdb_id,
           imdbNotFound: false
         })
-        console.log(imdbID);
         fetch(
           `https://eppy-aa7fb.firebaseio.com/episode/episodeList.json?orderBy=%22parentTconst%22&equalTo=%22${imdbID}%22`
         )
           .then(response => response.json())
           .then(data => {
             this.setState({ episodes: data, loading: false, imdbNotFound: false });
-            console.log(data);
           })
           .then(
             fetch(
@@ -171,7 +165,6 @@ export class Module extends Component {
               .then(response => response.json())
               .then(data => {
                 this.setState({ external: data });
-                console.log(data);
               })
           );
       }
@@ -192,9 +185,7 @@ export class Module extends Component {
       arr[i].seasonNumber = parseInt(arr[i].seasonNumber);
       arr[i].episodeNumber = parseInt(arr[i].episodeNumber);
       arr[i].averageRating = parseFloat(arr[i].averageRating);
-      console.log(arr[i]);
     }
-    console.log(_.sortBy(arr, ["seasonNumber", "episodeNumber"]));
 
     let graphGroups = _.groupBy(
       _.sortBy(arr, ["seasonNumber", "episodeNumber"]),
@@ -208,8 +199,6 @@ export class Module extends Component {
 
     //reformat array -- this is the entire response
     var flatten = _.flatten(result);
-    console.table(flatten);
-    console.log("flatten");
     //map response to new array only including the average rating
     let flattenArr = flatten.map(function (sub) {
       return sub.map(ep => ep.averageRating);
@@ -218,8 +207,6 @@ export class Module extends Component {
     let flattenEp = flatten.map(function (sub) {
       return sub.map(ep => ep.primaryTitle);
     });
-    console.table(flattenEp);
-    console.log("flattenEp");
     //find largest amount of episodes
     let largest = 0;
 
@@ -250,7 +237,6 @@ export class Module extends Component {
       });
     }
 
-    console.table(dataSetsTest);
     //data object for the graph labels/datasets
     const data = {
       labels: dynLabels,
