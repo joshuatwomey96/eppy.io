@@ -10,7 +10,7 @@
     "chart.js": "^2.7.3",
     "cheerio": "^1.0.0-rc.3",
     "firebase": "^6.4.0",
-    "firebase-admin": "^8.3.0",
+    "firebase-admin": "^11.4.1",
     "gh-pages": "^2.1.1",
     "react": "^16.6.3",
     "react-autocomplete": "^1.8.1",
